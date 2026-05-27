@@ -1,0 +1,463 @@
+/* Shared step styles */
+.stepContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-primary, #1a1a1a);
+  margin: 0;
+}
+
+.stepDescription {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary, #6b7280);
+  margin: 0;
+}
+
+/* Form elements */
+.formGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.input,
+.select,
+.textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: var(--color-text-primary, #1a1a1a);
+  background: var(--color-surface, #fff);
+  transition: border-color 0.15s;
+}
+
+.input:focus,
+.select:focus,
+.textarea:focus {
+  outline: none;
+  border-color: var(--color-primary, #2563eb);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.select {
+  appearance: auto;
+}
+
+/* Action row */
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.testButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: var(--color-primary, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.testButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Stats row (SKU Mapping) */
+.statsRow {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.statCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0.75rem 1.5rem;
+  background: var(--color-surface, #fff);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  min-width: 80px;
+}
+
+.statValue {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.statSuccess {
+  color: var(--color-success, #16a34a);
+}
+
+.statWarning {
+  color: var(--color-warning, #ca8a04);
+}
+
+.statError {
+  color: var(--color-error, #dc2626);
+}
+
+.statLabel {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #6b7280);
+  margin-top: 0.25rem;
+}
+
+/* Mapping table */
+.tableContainer {
+  overflow-x: auto;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+}
+
+.mappingTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.mappingTable th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-subtle, #f9fafb);
+  border-bottom: 1px solid var(--color-border, #e5e7eb);
+  font-weight: 500;
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.mappingTable td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--color-border, #e5e7eb);
+  vertical-align: middle;
+}
+
+.mappingRow:last-child td {
+  border-bottom: none;
+}
+
+.skuCell {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.skuName {
+  font-weight: 500;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.skuId {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #6b7280);
+}
+
+.noMatch {
+  color: var(--color-text-secondary, #6b7280);
+}
+
+/* Action buttons */
+.actionButtons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.confirmBtn,
+.rejectBtn,
+.searchBtn {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: opacity 0.15s;
+}
+
+.confirmBtn {
+  background: var(--color-success, #16a34a);
+  color: #fff;
+}
+
+.confirmBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.rejectBtn {
+  background: var(--color-error-bg, #fef2f2);
+  color: var(--color-error, #dc2626);
+  border-color: var(--color-error-border, #fecaca);
+}
+
+.searchBtn {
+  background: var(--color-bg-subtle, #f9fafb);
+  color: var(--color-text-primary, #1a1a1a);
+  border-color: var(--color-border, #e5e7eb);
+}
+
+.actionDone {
+  color: var(--color-success, #16a34a);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.actionRejected {
+  color: var(--color-error, #dc2626);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Search panel */
+.searchPanel {
+  padding: 1rem;
+  background: var(--color-bg-subtle, #f9fafb);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+}
+
+.searchTitle {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0 0 0.75rem;
+}
+
+.searchInputRow {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.searchInputRow .input {
+  flex: 1;
+}
+
+/* Rule setup */
+.ruleSection {
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.ruleSectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.ruleSectionTitle {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin: 0;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.addRuleBtn {
+  padding: 0.375rem 0.75rem;
+  background: var(--color-primary, #2563eb);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.emptyRules {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary, #6b7280);
+  text-align: center;
+  padding: 1rem;
+  margin: 0;
+}
+
+.ruleList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.ruleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ruleInput {
+  flex: 1;
+  padding: 0.375rem 0.625rem;
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 4px;
+  font-size: 0.8125rem;
+}
+
+.ruleInput:focus {
+  outline: none;
+  border-color: var(--color-primary, #2563eb);
+}
+
+.ruleArrow {
+  color: var(--color-text-secondary, #6b7280);
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.removeRuleBtn {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-error-bg, #fef2f2);
+  color: var(--color-error, #dc2626);
+  border: 1px solid var(--color-error-border, #fecaca);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Validation step */
+.validationResults,
+.simulationResults {
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.sectionTitle {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin: 0 0 0.75rem;
+  color: var(--color-text-primary, #1a1a1a);
+}
+
+.checkList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkItem {
+  padding: 0.75rem;
+  background: var(--color-bg-subtle, #f9fafb);
+  border-radius: 6px;
+}
+
+.checkHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.checkLabel {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.checkDetails {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary, #6b7280);
+  margin: 0.25rem 0 0;
+}
+
+.fixSuggestion {
+  font-size: 0.8125rem;
+  color: var(--color-warning, #ca8a04);
+  margin: 0.5rem 0 0;
+  padding: 0.5rem;
+  background: var(--color-warning-bg, #fefce8);
+  border-radius: 4px;
+}
+
+/* Simulation steps */
+.simulationSteps {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.simulationStep {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.simulationStepIcon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.simulationStepName {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  min-width: 80px;
+}
+
+.simulationStepDetails {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary, #6b7280);
+}
+
+/* Go live section */
+.goLiveSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--color-border, #e5e7eb);
+}
+
+.goLiveButton {
+  padding: 0.75rem 2rem;
+  background: var(--color-success, #16a34a);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.goLiveButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.goLiveHint {
+  font-size: 0.8125rem;
+  color: var(--color-text-secondary, #6b7280);
+  margin: 0;
+}

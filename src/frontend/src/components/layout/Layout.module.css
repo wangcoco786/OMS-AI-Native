@@ -1,0 +1,18 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  margin-top: var(--header-height);
+}
+
+.main {
+  flex: 1;
+  padding: 24px;
+  margin-left: var(--sidebar-width);
+  min-height: calc(100vh - var(--header-height));
+}

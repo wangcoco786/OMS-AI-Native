@@ -1,0 +1,64 @@
+.filtersContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.granularityGroup {
+  display: flex;
+  gap: 0;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.granularityBtn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #fff;
+  color: #64748b;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.granularityBtn:not(:last-child) {
+  border-right: 1px solid #e2e8f0;
+}
+
+.granularityBtnActive {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.selectGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.selectLabel {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+.select {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  color: #1e293b;
+  background: #fff;
+  cursor: pointer;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.15);
+}

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OMS AI Native - 订单管理系统</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f7fa; height: 100vh; display: flex; flex-direction: column; }
+    
+    /* Header */
+    .header { background: #1a1a2e; color: white; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .header h1 { font-size: 20px; font-weight: 600; }
+    .header .status { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #a0aec0; }
+    .header .status .dot { width: 8px; height: 8px; border-radius: 50%; background: #48bb78; }
+    
+    /* Main Layout */
+    .main { display: flex; flex: 1; overflow: hidden; }
+    
+    /* Sidebar */
+    .sidebar { width: 260px; background: white; border-right: 1px solid #e2e8f0; padding: 16px; overflow-y: auto; }
+    .sidebar h3 { font-size: 13px; color: #718096; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+    .nav-item { padding: 10px 12px; border-radius: 8px; cursor: pointer; font-size: 14px; color: #4a5568; margin-bottom: 4px; display: flex; align-items: center; gap: 10px; }
+    .nav-item:hover { background: #edf2f7; }
+    .nav-item.active { background: #ebf4ff; color: #3182ce; font-weight: 500; }
+    .nav-item .icon { font-size: 18px; }
+    
+    /* Chat Area */
+    .chat-container { flex: 1; display: flex; flex-direction: column; }
+    .chat-header { padding: 16px 24px; border-bottom: 1px solid #e2e8f0; background: white; }
+    .chat-header h2 { font-size: 16px; color: #2d3748; }
+    .chat-header p { font-size: 13px; color: #718096; margin-top: 4px; }
+    
+    .messages { flex: 1; overflow-y: auto; padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+    
+    .message { max-width: 80%; padding: 12px 16px; border-radius: 12px; font-size: 14px; line-height: 1.6; }
+    .message.user { align-self: flex-end; background: #3182ce; color: white; border-bottom-right-radius: 4px; }
+    .message.assistant { align-self: flex-start; background: white; color: #2d3748; border: 1px solid #e2e8f0; border-bottom-left-radius: 4px; }
+    .message.assistant pre { background: #f7fafc; padding: 8px 12px; border-radius: 6px; margin-top: 8px; overflow-x: auto; font-size: 12px; }
+    .message.system { align-self: center; background: #fefcbf; color: #744210; font-size: 12px; padding: 8px 16px; border-radius: 20px; }
+    .message .typing { display: inline-block; }
+    .message .typing::after { content: '...'; animation: dots 1.5s infinite; }
+    @keyframes dots { 0%,20% { content: '.'; } 40% { content: '..'; } 60%,100% { content: '...'; } }
+    
+    /* Input Area */
+    .input-area { padding: 16px 24px; background: white; border-top: 1px solid #e2e8f0; }
+    .input-wrapper { display: flex; gap: 12px; align-items: center; }
+    .input-wrapper input { flex: 1; padding: 12px 16px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+    .input-wrapper input:focus { border-color: #3182ce; }
+    .input-wrapper button { padding: 12px 24px; background: #3182ce; color: white; border: none; border-radius: 8px; font-size: 14px; cursor: pointer; font-weight: 500; transition: background 0.2s; }
+    .input-wrapper button:hover { background: #2c5282; }
+    .input-wrapper button:disabled { background: #a0aec0; cursor: not-allowed; }
+    
+    /* Dashboard Panel */
+    .dashboard { display: none; flex: 1; padding: 24px; overflow-y: auto; }
+    .dashboard.active { display: block; }
+    .dashboard h2 { font-size: 20px; color: #2d3748; margin-bottom: 20px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 24px; }
+    .stat-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; }
+    .stat-card .label { font-size: 13px; color: #718096; margin-bottom: 8px; }
+    .stat-card .value { font-size: 28px; font-weight: 700; color: #2d3748; }
+    .stat-card .sub { font-size: 12px; color: #48bb78; margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>🤖 OMS AI Native</h1>
+    <div class="status">
+      <div class="dot"></div>
+      <span>系统运行中</span>
+    </div>
+  </div>
+  
+  <div class="main">
+    <div class="sidebar">
+      <h3>功能模块</h3>
+      <div class="nav-item active" onclick="showPanel('chat')">
+        <span class="icon">💬</span> 订单查询 Agent
+      </div>
+      <div class="nav-item" onclick="showPanel('dashboard')">
+        <span class="icon">📊</span> 数据看板
+      </div>
+      <div class="nav-item" onclick="showPanel('agents')">
+        <span class="icon">🤖</span> Agent 管理
+      </div>
+      <div class="nav-item" onclick="showPanel('tools')">
+        <span class="icon">🔧</span> Tool 管理
+      </div>
+      <div class="nav-item" onclick="showPanel('settings')">
+        <span class="icon">⚙️</span> 系统设置
+      </div>
+    </div>
+    
+    <!-- Chat Panel -->
+    <div class="chat-container" id="panel-chat">
+      <div class="chat-header">
+        <h2>订单查询 Agent</h2>
+        <p>通过自然语言查询订单信息，支持按订单号、状态、时间范围等条件筛选</p>
+      </div>
+      <div class="messages" id="messages">
+        <div class="message system">👋 你好！我是订单查询助手，可以帮你查询订单信息。试试输入"查询今天的订单"或"ORD-001 的状态"</div>
+      </div>
+      <div class="input-area">
+        <div class="input-wrapper">
+          <input type="text" id="messageInput" placeholder="输入你的问题，例如：查询最近的待发货订单..." onkeydown="if(event.key==='Enter')sendMessage()">
+          <button onclick="sendMessage()" id="sendBtn">发送</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Dashboard Panel -->
+    <div class="dashboard" id="panel-dashboard">
+      <h2>📊 系统数据看板</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="label">今日订单量</div>
+          <div class="value" id="stat-orders">0</div>
+          <div class="sub">系统启动中...</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Agent 会话数</div>
+          <div class="value" id="stat-sessions">0</div>
+          <div class="sub">当前活跃</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">Tool 调用次数</div>
+          <div class="value" id="stat-tools">0</div>
+          <div class="sub">今日累计</div>
+        </div>
+        <div class="stat-card">
+          <div class="label">平均响应时间</div>
+          <div class="value" id="stat-latency">-</div>
+          <div class="sub">P95 延迟</div>
+        </div>
+      </div>
+      <div class="stat-card" style="margin-top:16px">
+        <div class="label">系统状态</div>
+        <pre id="metrics-display" style="margin-top:8px;font-size:12px;color:#4a5568;white-space:pre-wrap;">加载中...</pre>
+      </div>
+    </div>
+
+    <!-- Agents Panel -->
+    <div class="dashboard" id="panel-agents">
+      <h2>🤖 Agent 管理</h2>
+      <div class="stat-card">
+        <div class="label">已注册 Agent</div>
+        <pre id="agents-list" style="margin-top:8px;font-size:13px;color:#4a5568;">加载中...</pre>
+      </div>
+    </div>
+
+    <!-- Tools Panel -->
+    <div class="dashboard" id="panel-tools">
+      <h2>🔧 Tool 管理</h2>
+      <div class="stat-card">
+        <div class="label">已注册 Tools</div>
+        <pre id="tools-list" style="margin-top:8px;font-size:13px;color:#4a5568;">加载中...</pre>
+      </div>
+    </div>
+
+    <!-- Settings Panel -->
+    <div class="dashboard" id="panel-settings">
+      <h2>⚙️ 系统设置</h2>
+      <div class="stat-card">
+        <div class="label">API 配置</div>
+        <div style="margin-top:12px;font-size:13px;color:#4a5568;">
+          <p><strong>后端地址：</strong> http://localhost:3000</p>
+          <p style="margin-top:8px"><strong>JWT Secret：</strong> dev-secret-change-in-production</p>
+          <p style="margin-top:8px"><strong>LLM 模型：</strong> Claude Sonnet 4 (需配置 API Key)</p>
+          <p style="margin-top:16px;color:#e53e3e;">⚠️ 注意：当前使用开发配置，生产环境请修改 .env 文件</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:3000';
+    const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJ1c2VyLTAwMSIsInRlbmFudElkIjoidGVuYW50LTAwMSIsInJvbGVzIjpbImFkbWluIl0sInBlcm1pc3Npb25zIjpbIio6KiJdLCJpYXQiOjE3NzgzMTE1ODAsImV4cCI6MTc3ODM5Nzk4MH0.uqUxLyPGibBpLit9sSPs1FoWac4WGetSS5lpm9QLSkM';
+    
+    let sessionId = null;
+
+    function headers() {
+      return { 'Content-Type': 'application/json', 'Authorization': `Bearer ${TOKEN}` };
+    }
+
+    function showPanel(name) {
+      document.querySelectorAll('.chat-container, .dashboard').forEach(el => {
+        el.style.display = 'none';
+        el.classList.remove('active');
+      });
+      document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+      
+      const panel = document.getElementById(`panel-${name}`);
+      if (panel) {
+        if (panel.classList.contains('chat-container')) {
+          panel.style.display = 'flex';
+        } else {
+          panel.style.display = 'block';
+          panel.classList.add('active');
+        }
+      }
+      
+      event.currentTarget.classList.add('active');
+      
+      if (name === 'dashboard') loadMetrics();
+      if (name === 'agents') loadAgents();
+      if (name === 'tools') loadTools();
+    }
+
+    async function loadMetrics() {
+      try {
+        const res = await fetch(`${API_BASE}/metrics`);
+        const text = await res.text();
+        document.getElementById('metrics-display').textContent = text;
+      } catch (e) {
+        document.getElementById('metrics-display').textContent = '无法连接到服务器';
+      }
+    }
+
+    async function loadAgents() {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/agents`, { headers: headers() });
+        const data = await res.json();
+        document.getElementById('agents-list').textContent = 
+          data.agents.length > 0 ? JSON.stringify(data.agents, null, 2) : '暂无已注册的 Agent\n\n提示：通过 POST /api/v1/agents 注册新 Agent';
+      } catch (e) {
+        document.getElementById('agents-list').textContent = '加载失败: ' + e.message;
+      }
+    }
+
+    async function loadTools() {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/tools`, { headers: headers() });
+        const data = await res.json();
+        document.getElementById('tools-list').textContent = 
+          data.tools.length > 0 ? JSON.stringify(data.tools, null, 2) : '暂无已注册的 Tool\n\n提示：通过 POST /api/v1/tools 注册新 Tool';
+      } catch (e) {
+        document.getElementById('tools-list').textContent = '加载失败: ' + e.message;
+      }
+    }
+
+    async function createSession() {
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/sessions`, {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({ agentId: 'order-query-agent' })
+        });
+        const data = await res.json();
+        if (data.session) {
+          sessionId = data.session.id;
+          return true;
+        }
+      } catch (e) {
+        console.error('Failed to create session:', e);
+      }
+      return false;
+    }
+
+    function addMessage(content, type) {
+      const messages = document.getElementById('messages');
+      const div = document.createElement('div');
+      div.className = `message ${type}`;
+      div.innerHTML = content;
+      messages.appendChild(div);
+      messages.scrollTop = messages.scrollHeight;
+      return div;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById('messageInput');
+      const message = input.value.trim();
+      if (!message) return;
+
+      input.value = '';
+      document.getElementById('sendBtn').disabled = true;
+
+      addMessage(message, 'user');
+
+      // Create session if needed
+      if (!sessionId) {
+        const created = await createSession();
+        if (!created) {
+          addMessage('⚠️ 无法创建会话。请确保后端服务正在运行。', 'system');
+          document.getElementById('sendBtn').disabled = false;
+          return;
+        }
+      }
+
+      // Show typing indicator
+      const typingDiv = addMessage('<span class="typing">Agent 正在思考</span>', 'assistant');
+
+      try {
+        const res = await fetch(`${API_BASE}/api/v1/sessions/${sessionId}/chat`, {
+          method: 'POST',
+          headers: headers(),
+          body: JSON.stringify({ message })
+        });
+
+        if (!res.ok) {
+          const err = await res.json();
+          typingDiv.innerHTML = `⚠️ 错误: ${err.error?.message || '请求失败'}`;
+          document.getElementById('sendBtn').disabled = false;
+          return;
+        }
+
+        // Read SSE stream
+        const reader = res.body.getReader();
+        const decoder = new TextDecoder();
+        let responseText = '';
+        typingDiv.innerHTML = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+
+          const chunk = decoder.decode(value, { stream: true });
+          const lines = chunk.split('\n');
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              try {
+                const event = JSON.parse(line.slice(6));
+                if (event.type === 'text_delta') {
+                  responseText += event.content;
+                  typingDiv.innerHTML = responseText.replace(/\n/g, '<br>');
+                } else if (event.type === 'tool_use') {
+                  responseText += `\n🔧 调用工具: ${event.toolName}\n`;
+                  typingDiv.innerHTML = responseText.replace(/\n/g, '<br>');
+                } else if (event.type === 'error') {
+                  responseText += `\n⚠️ ${event.error?.error?.message || '发生错误'}`;
+                  typingDiv.innerHTML = responseText.replace(/\n/g, '<br>');
+                }
+              } catch (e) { /* skip non-JSON lines */ }
+            }
+          }
+        }
+
+        if (!responseText) {
+          typingDiv.innerHTML = '⚠️ Agent 未返回响应。请确保已配置 Claude API Key (ANTHROPIC_API_KEY 环境变量)。';
+        }
+      } catch (e) {
+        typingDiv.innerHTML = `⚠️ 连接错误: ${e.message}`;
+      }
+
+      document.getElementById('sendBtn').disabled = false;
+      document.getElementById('messageInput').focus();
+    }
+
+    // Initialize
+    document.getElementById('panel-chat').style.display = 'flex';
+  </script>
+</body>
+</html>

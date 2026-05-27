@@ -1,0 +1,74 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.presetGroup {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.presetBtn {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #fff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.presetBtn:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+}
+
+.presetBtnActive {
+  background: #3b82f6;
+  border-color: #3b82f6;
+  color: #fff;
+}
+
+.presetBtnActive:hover {
+  background: #2563eb;
+}
+
+.separator {
+  width: 1px;
+  height: 1.5rem;
+  background: #e2e8f0;
+}
+
+.customRange {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dateInput {
+  padding: 0.375rem 0.5rem;
+  font-size: 0.8125rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #334155;
+  background: #fff;
+}
+
+.dateInput:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+}
+
+.rangeSeparator {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+}

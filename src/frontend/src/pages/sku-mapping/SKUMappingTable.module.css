@@ -1,0 +1,187 @@
+.tableContainer {
+  position: relative;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: #374151;
+  border-bottom: 2px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+}
+
+.row:hover {
+  background-color: #f9fafb;
+}
+
+.loadingRow {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: #9ca3af;
+}
+
+.skuCell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.skuName {
+  font-weight: 500;
+  color: #1f2937;
+}
+
+.skuCode {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-family: monospace;
+}
+
+.noMatch {
+  color: #9ca3af;
+}
+
+.differenceList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.differenceItem {
+  font-size: 0.8125rem;
+  padding: 2px 6px;
+  background-color: #fef3c7;
+  border-radius: 4px;
+  color: #92400e;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.actionBtn {
+  padding: 4px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  color: #374151;
+}
+
+.actionBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rejectBtn {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.correctBtn {
+  color: #2563eb;
+  border-color: #bfdbfe;
+}
+
+/* Batch action bar */
+.batchBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.batchInfo {
+  font-size: 0.875rem;
+  color: #1e40af;
+  font-weight: 500;
+}
+
+.batchConfirmBtn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #16a34a;
+  color: #fff;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.batchConfirmBtn:hover {
+  background: #15803d;
+}
+
+.batchRejectBtn {
+  padding: 6px 16px;
+  border: none;
+  border-radius: 4px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.batchRejectBtn:hover {
+  background: #b91c1c;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.pageButton {
+  padding: 6px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.pageButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pageInfo {
+  font-size: 0.875rem;
+  color: #6b7280;
+}

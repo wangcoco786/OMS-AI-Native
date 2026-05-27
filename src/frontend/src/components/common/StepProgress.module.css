@@ -1,0 +1,99 @@
+.container {
+  width: 100%;
+  padding: 16px 0;
+}
+
+.stepList {
+  display: flex;
+  align-items: flex-start;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  flex: 1;
+}
+
+.indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  border: 2px solid var(--color-border, #e0e0e0);
+  background-color: var(--color-surface, #fff);
+  color: var(--color-text-secondary, #666);
+  transition: all 0.2s ease;
+  padding: 0;
+  cursor: default;
+}
+
+.clickable .indicator {
+  cursor: pointer;
+}
+
+.clickable .indicator:hover {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.clickable .indicator:focus-visible {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+.completed .indicator {
+  background-color: var(--color-success, #22c55e);
+  border-color: var(--color-success, #22c55e);
+  color: #fff;
+}
+
+.current .indicator {
+  background-color: var(--color-primary, #3b82f6);
+  border-color: var(--color-primary, #3b82f6);
+  color: #fff;
+}
+
+.number {
+  line-height: 1;
+}
+
+.connector {
+  position: absolute;
+  top: 16px;
+  left: calc(50% + 20px);
+  width: calc(100% - 40px);
+  height: 2px;
+  background-color: var(--color-border, #e0e0e0);
+  transition: background-color 0.2s ease;
+}
+
+.connectorCompleted {
+  background-color: var(--color-success, #22c55e);
+}
+
+.label {
+  margin-top: 8px;
+  font-size: 12px;
+  color: var(--color-text-secondary, #666);
+  text-align: center;
+  max-width: 100px;
+  word-wrap: break-word;
+}
+
+.current .label {
+  color: var(--color-primary, #3b82f6);
+  font-weight: 600;
+}
+
+.completed .label {
+  color: var(--color-success, #22c55e);
+}

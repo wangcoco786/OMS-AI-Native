@@ -1,0 +1,58 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.cardAnomaly {
+  border-color: #f59e0b;
+  background: #fffbeb;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.metricName {
+  font-size: 0.875rem;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.warningIcon {
+  color: #f59e0b;
+  font-size: 1.125rem;
+}
+
+.value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.trendIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.trendUp {
+  color: #10b981;
+}
+
+.trendDown {
+  color: #ef4444;
+}

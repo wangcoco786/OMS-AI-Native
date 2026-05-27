@@ -1,0 +1,217 @@
+.container {
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 4px 0;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin: 0 0 20px 0;
+}
+
+.dropZone {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 40px 24px;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.2s, background 0.2s;
+}
+
+.dropZone:hover {
+  border-color: #3b82f6;
+  background: #f8fafc;
+}
+
+.dragOver {
+  border-color: #3b82f6;
+  background: #eff6ff;
+}
+
+.dropIcon {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.dropText {
+  font-size: 0.875rem;
+  color: #374151;
+  margin: 0;
+}
+
+.fileSize {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  margin: 4px 0 0 0;
+}
+
+.fileInput {
+  display: none;
+}
+
+.progressBar {
+  margin-top: 16px;
+  height: 32px;
+  background: #f3f4f6;
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressFill {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #3b82f6, #60a5fa);
+  animation: progress 1.5s ease-in-out infinite;
+}
+
+@keyframes progress {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.progressText {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8125rem;
+  color: #1f2937;
+  font-weight: 500;
+}
+
+.errorMessage {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+}
+
+.uploadBtn {
+  padding: 10px 24px;
+  border: none;
+  border-radius: 6px;
+  background: #3b82f6;
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.uploadBtn:hover:not(:disabled) {
+  background: #2563eb;
+}
+
+.uploadBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.resultSection {
+  margin-top: 16px;
+}
+
+.resultTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0 0 16px 0;
+}
+
+.resultStats {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.resultStat {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.resultStatValue {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.resultStatLabel {
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.successStat {
+  border-color: #bbf7d0;
+  background: #f0fdf4;
+}
+
+.successStat .resultStatValue {
+  color: #16a34a;
+}
+
+.errorStat {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.errorStat .resultStatValue {
+  color: #dc2626;
+}
+
+.errorList {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #fef2f2;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+.errorListTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #dc2626;
+  margin: 0 0 8px 0;
+}
+
+.errorListItem {
+  font-size: 0.8125rem;
+  color: #7f1d1d;
+  margin-bottom: 4px;
+}
+
+.resetBtn {
+  margin-top: 16px;
+  padding: 8px 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 0.875rem;
+  cursor: pointer;
+  color: #374151;
+}
+
+.resetBtn:hover {
+  background: #f9fafb;
+}

@@ -1,0 +1,117 @@
+.container {
+  width: 100%;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.th {
+  text-align: left;
+  padding: 12px 16px;
+  font-weight: 600;
+  color: var(--color-text-secondary, #666);
+  background-color: var(--color-surface, #fafafa);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  white-space: nowrap;
+}
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.sortButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: inherit;
+  cursor: pointer;
+}
+
+.sortButton:hover {
+  color: var(--color-primary, #3b82f6);
+}
+
+.sortButton:focus-visible {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.sortIcon {
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.row:hover {
+  background-color: var(--color-surface-hover, #f5f5f5);
+}
+
+.td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+  color: var(--color-text, #1a1a1a);
+}
+
+.empty {
+  padding: 32px 16px;
+  text-align: center;
+  color: var(--color-text-secondary, #666);
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 12px 0;
+}
+
+.pageButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 6px;
+  background: var(--color-surface, #fff);
+  color: var(--color-text, #1a1a1a);
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pageButton:hover:not(:disabled) {
+  border-color: var(--color-primary, #3b82f6);
+  color: var(--color-primary, #3b82f6);
+}
+
+.pageButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageButton:focus-visible {
+  outline: 2px solid var(--color-primary, #3b82f6);
+  outline-offset: 2px;
+}
+
+.pageInfo {
+  font-size: 14px;
+  color: var(--color-text-secondary, #666);
+}

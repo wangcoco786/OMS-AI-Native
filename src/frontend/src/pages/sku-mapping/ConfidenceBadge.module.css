@@ -1,0 +1,56 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.label {
+  /* inherits color from parent */
+}
+
+.score {
+  opacity: 0.8;
+  font-size: 0.75rem;
+}
+
+/* High confidence - green */
+.high_confidence {
+  background-color: #dcfce7;
+  color: #166534;
+}
+
+.high_confidence .dot {
+  background-color: #22c55e;
+}
+
+/* Needs review - yellow */
+.needs_review {
+  background-color: #fef9c3;
+  color: #854d0e;
+}
+
+.needs_review .dot {
+  background-color: #eab308;
+}
+
+/* No match - red */
+.no_match {
+  background-color: #fee2e2;
+  color: #991b1b;
+}
+
+.no_match .dot {
+  background-color: #ef4444;
+}
