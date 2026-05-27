@@ -1,0 +1,9 @@
+node_modules
+dist
+src/frontend/node_modules
+.kiro
+.git
+.vscode
+docs
+coverage
+*.log
