@@ -129,11 +129,12 @@ export function createDashboardRouter(): Router {
   router.get('/inventory', async (req: AppRequest, res: Response): Promise<void> => {
     try {
       const tenantId = req.user?.tenantId;
-      const _warehouseId = typeof req.query.warehouseId === 'string' ? req.query.warehouseId : undefined;
+      const warehouseId = typeof req.query.warehouseId === 'string' ? req.query.warehouseId : undefined;
 
       // TODO: Integrate with DashboardService when implemented
       res.json({
         tenantId,
+        warehouseId,
         warehouses: [],
       });
     } catch (error) {

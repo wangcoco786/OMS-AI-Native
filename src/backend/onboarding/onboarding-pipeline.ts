@@ -16,7 +16,7 @@ import pino from 'pino';
 
 import type { DatabaseService } from '../../infrastructure/database/types.js';
 import type { SKUMapperService } from '../sku-mapper/sku-mapper-service.js';
-import type { ChannelSKU, OnboardingReport, OnboardingSession, ValidationReport } from '../../shared/m2-types.js';
+import type { ChannelSKU, OnboardingReport, ValidationReport } from '../../shared/m2-types.js';
 import { ConfigurationValidator } from './config-validator.js';
 import { OrderFlowSimulator } from './order-flow-simulator.js';
 import type { OnboardingSessionService } from './session-service.js';

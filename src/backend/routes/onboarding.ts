@@ -153,13 +153,14 @@ export function createOnboardingRouter(): Router {
   router.post('/sessions/:id/steps/:step', async (req: AppRequest, res: Response): Promise<void> => {
     try {
       const { id, step } = req.params;
-      const _data = req.body;
+      const data = req.body;
 
       // TODO: Integrate with OnboardingAgentService when implemented
       res.json({
         success: true,
         sessionId: id,
         step,
+        data,
         nextStep: null,
       });
     } catch (error) {

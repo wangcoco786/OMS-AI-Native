@@ -24,7 +24,7 @@ import type {
   Subscription,
   QueueStats,
 } from './types.js';
-import { RetryHandler, DEFAULT_RETRY_CONFIG } from './retry-handler.js';
+import { RetryHandler } from './retry-handler.js';
 import type { RetryConfig, RetryPublisher } from './retry-handler.js';
 
 type Connection = amqplib.Connection;

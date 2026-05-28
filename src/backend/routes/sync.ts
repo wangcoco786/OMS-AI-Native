@@ -268,13 +268,14 @@ export function createSyncRouter(): Router {
   router.get('/:id/history', async (req: AppRequest, res: Response): Promise<void> => {
     try {
       const { id } = req.params;
-      const _limit = typeof req.query.limit === 'string' ? parseInt(req.query.limit, 10) : 20;
+      const limit = typeof req.query.limit === 'string' ? parseInt(req.query.limit, 10) : 20;
 
       // TODO: Integrate with DataSyncService when implemented
       res.json({
         jobId: id,
         runs: [],
         total: 0,
+        limit,
       });
     } catch (error) {
       logger.error({ error, traceId: (req as AppRequest).traceId }, 'Failed to get sync job history');
